@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} dowload{% endblock %}
+
+{% block body %}
+<div class="container" >
+
+<h1>Liste des cooptations </h1>
+<br>
+
+<br>
+<div class="table-responsive">
+  <table class="table" >
+  <thead>
+    <tr>
+      
+      <th scope="col">Nom du fichier</th>
+      <th scope="col">Soumis par</th>
+      <th scope="col">Acceder au fichier</th>
+
+      
+    </tr>
+  </thead>
+  <tbody>
+  {% for a in cv %}
+    <tr>
+      
+     <th scope="row">{{a.fileName}}</th>
+      
+     <th scope="row">{{a.user.firstName}} {{a.user.lastName}}</th>  
+        
+        
+     <th><a href="{{ asset('uploads/cvs/' ~ a.filename) }}" target="_blank" title="a.filename" download ><button type="button" class="btn btn-primary">Télécharger </button> </a></th>
+  
+    
+    {% endfor %} 
+  </tbody> 
+ </table>
+ </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1000px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container my-3 bg-light">
+              <div class="col-md-12 text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>  
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div >
+                <div class="card bg-light">
+                    <div class="card-body">
+                      <h2 class="text-center">Ajouter utlisateur</h2>
+                      {{form_start (form)}}
+                      {{form_widget (form)}}
+                      <button type="submit"  class="btn btn-success" onclick="myFunction()">Ajouter</button>
+                      {{form_end (form)}}
+				          </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <h1>Bonjour {{ app.user.firstname}} {{ app.user.lastname}} !</h1><br>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Ajouter
+  </button>
+  <hr>
+  <h2>Les utlisateurs:</h2>
+  <br>
+  <div id="presidents">charger...</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+<script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+
+<script>
+$(function() {
+  {searching: true}
+    $('#presidents').initDataTables({{ datatable_settings(datatable) }}, {
+    searching: true,
+    dom:'<"html5buttons"B>lTfgitp',
+    buttons: [
+        'copy',
+        { extend: 'pdf', title: 'domains'},
+        { extend: 'print' }
+    ]
+}).then(function(dt) {
+    dt.on('draw', function() {
+    })
+});
+});
+</script> 
+        {% block javascript %}
+            <script src="{{ asset('JS/departmentValidation.js') }}"></script>
+        {% endblock %}
+{% endblock %}

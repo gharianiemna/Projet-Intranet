@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="container"><div class ="example-wrapper " >
+<h3>Demande du congé</h3>
+<h5>Bonjour {{ app.user.firstname}} {{ app.user.lastname}}</h5>
+<div class='conge_form'>
+
+  <div class="row">
+       <div class="col-8 offset-2">
+           <div class="card bg-light">
+               <div class="card-body">
+{{form(form)}}
+</div>
+</div>
+</div>
+</div>
+ </div>
+ <br>
+  <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Date</th>
+      <th scope="col">Nombre de jours</th>
+      <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  {% for a in conge %}
+    <tr>
+    <td>{{a.dateDebut|date("m/d/Y")}}</td>
+      <th scope="row">{{a.nbJours}}</th>
+    {% for s in a.Statut  %}
+      <td>{{s}}</td>
+   {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

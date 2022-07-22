@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{# <div class="container" style="width:900px;">
+
+		<h3>La liste des demandes de congés</h3>
+<br>
+<div id="presidents">Loading...</div>
+<div>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script> 
+<!-- Insert this at the end of your body element, but before the closing tag -->
+<script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+<script>
+$.noConflict();
+jQuery( document ).ready(function( $ )
+{
+    $('#presidents').initDataTables({{ datatable_settings(datatable) }}),
+{searching: true,
+    dom:'<"html5buttons"B>lTfgitp',
+    buttons: [
+        'copy',
+        { extend: 'pdf', title: 'domains'},
+        { extend: 'print' }
+    ]
+}})
+</script>
+</div>
+{% endblock %}
+
